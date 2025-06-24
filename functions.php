@@ -47,6 +47,7 @@ function redirectTo($url){
     header('Location: ' . $url);
     exit;
 }
+// pour reduire les étapes d'une recette et ajouter (un voir plus)
 function shortenText(string $text, int $id, int $maxLength = 100): string
 {
     if (strlen($text) <= $maxLength) {
@@ -58,27 +59,7 @@ function shortenText(string $text, int $id, int $maxLength = 100): string
     
     return $shortText . $link;
 }
-function displayStars5($noteSur5) {
-    $fullStars = floor($noteSur5);
-    $hasHalfStar = ($noteSur5 - $fullStars) >= 0.5;
-    $emptyStars = 5 - $fullStars - ($hasHalfStar ? 1 : 0);
-    
-    $html = '';
-    // Étoiles pleines
-    for ($i = 0; $i < $fullStars; $i++) {
-        $html .= '<i class="bi bi-star-fill text-warning"></i>';
-    }
-    // Demi-étoile
-    if ($hasHalfStar) {
-        $html .= '<i class="bi bi-star-half text-warning"></i>';
-    }
-    // Étoiles vides
-    for ($i = 0; $i < $emptyStars; $i++) {
-        $html .= '<i class="bi bi-star text-warning"></i>';
-    }
-    
-    return $html;
-}
+// recuperer une recette par son identifiant
 function getRecipeById(int $id, array $recipes): ?array
 {
     foreach ($recipes as $recipe) {
